@@ -1,7 +1,8 @@
 #ifndef IO_H_
 #define IO_H_
+#include <stdio.h>
+#include <stdlib.h>
 
-char[] readFile(char[] path); //read from files by path
-void writeFile(char[] path); // write to files by path
+char* readFile(const char* path, size_t* buffer_size); // read from files by path
 
 #endif
