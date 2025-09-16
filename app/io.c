@@ -34,18 +34,28 @@ char* readFile(const char* path, const int buffer_size) {
   return buffer;
 }
 
-void writeFile(const char* path, const char data) {
+void writeFile(const char* path, const char data[]) {
   FILE* file = fopen(path,"w");
   if (!file) {
     perror("file failed to open");
     exit(EXIT_FAILIURE);
   }
-  int count =
-  fwrite(data,sizeof(char),)
+
+  int count = strlen(data);
+  fwrite(data,sizeof(char),count,file);
 }
 
 int main(int argc, char** argv) {
-  char* filecontent = readFile(argv[1],1024);
-  printf("File content:\n%s\n",filecontent);
-  free(filecontent);
+  char command;
+  command = *argv[1];
+  if (command == 'w') {
+    writeFile(argv[2],argv[3]);
+  } else if (command == 'r') {
+    char* filecontent = readFile(argv[1],1024);
+    printf("File content:\n%s\n",filecontent);
+    free(filecontent);
+  } else {
+    fprintf(stderr, "command must be r or w\n");
+    exit(EXIT_FAILIURE);
+  }
 }
