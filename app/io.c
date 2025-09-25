@@ -5,6 +5,7 @@
 
 #define EXIT_FAILIURE 1
 
+//reads from a file given the path or name of the file and the size of the buffer to create for the read text
 char* readFile(const char* path, const int buffer_size) {
   if (buffer_size <= 0) {
     fprintf(stderr, "buffer size must be positive and nonzero\n");
@@ -34,6 +35,7 @@ char* readFile(const char* path, const int buffer_size) {
   return buffer;
 }
 
+//writes to a file given the data to write and the path of the file to write to
 void writeFile(const char* path, const char data[]) {
   FILE* file = fopen(path,"w");
   if (!file) {
@@ -45,6 +47,7 @@ void writeFile(const char* path, const char data[]) {
   fwrite(data,sizeof(char),count,file);
 }
 
+// tests out the writeFile and readFile functions
 int main(int argc, char** argv) {
   char command;
   command = *argv[1];
